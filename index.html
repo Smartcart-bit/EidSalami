@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eid Salami 🎉</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1 id="salami-message">Loading your Eid Salami...</h1>
+    <p id="quote" class="quote"></p>
+
+    <div class="amount-box">
+      <span id="amount">৳0</span>
+    </div>
+
+    <div class="buttons">
+      <button onclick="shareSalami()" class="btn">📤 Share This</button>
+      <button onclick="sendAnother()" class="btn secondary">➕ Send Another</button>
+    </div>
+    
+    <p class="credit">Mohammad Ullah, RUET EEE</p>
+  </div>
+
+  <div id="form-container" class="form-container hidden">
+    <h2>Send Salami</h2>
+    <input type="text" id="new-sender" placeholder="Your Name">
+    <input type="text" id="new-receiver" placeholder="Receiver's Name">
+    <input type="number" id="new-amount" placeholder="Amount (৳)">
+    <button onclick="generateLink()" class="btn">🔗 Generate Link</button>
+    <p id="generated-link"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

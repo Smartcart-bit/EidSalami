@@ -1,0 +1,54 @@
+function getParam(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
+}
+
+function formatAmount(amt) {
+  return "৳" + Number(amt).toLocaleString();
+}
+
+const sender = getParam("sender") || "Someone";
+const receiver = getParam("receiver") || "You";
+const amount = getParam("amount") || 0;
+
+document.getElementById("salami-message").innerText = `${receiver}, you've received Eid Salami from ${sender}!`;
+document.getElementById("amount").innerText = formatAmount(amount);
+
+// Random quote
+const quotes = [
+  "Eid Mubarak! Keep smiling and stay blessed.",
+  "Spread kindness like confetti (or Salami)!",
+  "Celebrate with joy and a grateful heart.",
+  "Small gifts, big smiles — that's what Eid is about!",
+  "Let your happiness multiply like Salami notes 🎉"
+];
+document.getElementById("quote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
+
+function shareSalami() {
+  const url = window.location.href;
+  const text = `${receiver} got ৳${amount} Eid Salami from ${sender}! 🎉 Check it out: ${url}`;
+  if (navigator.share) {
+    navigator.share({ title: "Eid Salami!", text, url });
+  } else {
+    alert("Copy and share this:\n" + text);
+  }
+}
+
+function sendAnother() {
+  document.getElementById("form-container").classList.remove("hidden");
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+function generateLink() {
+  const s = document.getElementById("new-sender").value;
+  const r = document.getElementById("new-receiver").value;
+  const a = document.getElementById("new-amount").value;
+
+  if (!s || !r || !a) {
+    alert("Fill all fields");
+    return;
+  }
+
+  const link = `${window.location.origin + window.location.pathname}?sender=${encodeURIComponent(s)}&receiver=${encodeURIComponent(r)}&amount=${a}`;
+  document.getElementById("generated-link").innerHTML = `<a href="${link}" target="_blank">${link}</a>`;
+}

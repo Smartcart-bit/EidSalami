@@ -16,20 +16,20 @@
     </div>
 
     <div class="buttons">
-      <button onclick="shareSalami()" class="btn">📤 Share This</button>
-      <button onclick="sendAnother()" class="btn secondary">➕ Send Another</button>
+      <button id="share-btn" class="btn">📤 Share This</button>
+      <button id="send-another-btn" class="btn secondary">➕ Send Another</button>
     </div>
     
     <p class="credit">Mohammad Ullah, RUET EEE</p>
   </div>
 
   <div id="form-container" class="form-container hidden">
-    <h2>Send Salami</h2>
+    <h2>Send Eid Salami</h2>
     <input type="text" id="new-sender" placeholder="Your Name">
     <input type="text" id="new-receiver" placeholder="Receiver's Name">
     <input type="number" id="new-amount" placeholder="Amount (৳)">
-    <button onclick="generateLink()" class="btn">🔗 Generate Link</button>
-    <p id="generated-link"></p>
+    <button id="generate-link-btn" class="btn">🔗 Generate Link</button>
+    <p id="generated-link" class="quote"></p>
   </div>
 
   <script src="script.js"></script>

@@ -1,54 +1,88 @@
-function getParam(param) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(param);
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fef3c7;
+  color: #2f2f2f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 20px;
 }
 
-function formatAmount(amt) {
-  return "৳" + Number(amt).toLocaleString();
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  max-width: 400px;
+  width: 100%;
 }
 
-const sender = getParam("sender") || "Someone";
-const receiver = getParam("receiver") || "You";
-const amount = getParam("amount") || 0;
-
-document.getElementById("salami-message").innerText = `${receiver}, you've received Eid Salami from ${sender}!`;
-document.getElementById("amount").innerText = formatAmount(amount);
-
-// Random quote
-const quotes = [
-  "Eid Mubarak! Keep smiling and stay blessed.",
-  "Spread kindness like confetti (or Salami)!",
-  "Celebrate with joy and a grateful heart.",
-  "Small gifts, big smiles — that's what Eid is about!",
-  "Let your happiness multiply like Salami notes 🎉"
-];
-document.getElementById("quote").innerText = quotes[Math.floor(Math.random() * quotes.length)];
-
-function shareSalami() {
-  const url = window.location.href;
-  const text = `${receiver} got ৳${amount} Eid Salami from ${sender}! 🎉 Check it out: ${url}`;
-  if (navigator.share) {
-    navigator.share({ title: "Eid Salami!", text, url });
-  } else {
-    alert("Copy and share this:\n" + text);
-  }
+h1 {
+  font-size: 1.5rem;
 }
 
-function sendAnother() {
-  document.getElementById("form-container").classList.remove("hidden");
-  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+.quote {
+  font-style: italic;
+  margin: 10px 0 20px;
 }
 
-function generateLink() {
-  const s = document.getElementById("new-sender").value;
-  const r = document.getElementById("new-receiver").value;
-  const a = document.getElementById("new-amount").value;
+.amount-box {
+  font-size: 2rem;
+  background: #dcfce7;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 10px 0;
+  animation: pop 1s ease-out forwards;
+}
 
-  if (!s || !r || !a) {
-    alert("Fill all fields");
-    return;
-  }
+@keyframes pop {
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }
+}
 
-  const link = `${window.location.origin + window.location.pathname}?sender=${encodeURIComponent(s)}&receiver=${encodeURIComponent(r)}&amount=${a}`;
-  document.getElementById("generated-link").innerHTML = `<a href="${link}" target="_blank">${link}</a>`;
+.btn {
+  background-color: #10b981;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  margin: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn.secondary {
+  background-color: #3b82f6;
+}
+
+.credit {
+  font-size: 0.75rem;
+  margin-top: 20px;
+  color: #666;
+}
+
+input {
+  display: block;
+  width: 90%;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.form-container {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  max-width: 400px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.hidden {
+  display: none;
 }
